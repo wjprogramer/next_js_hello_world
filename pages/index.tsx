@@ -1,4 +1,5 @@
 import type { NextPage } from 'next'
+import Link from 'next/link'
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
@@ -50,6 +51,15 @@ const Home: NextPage = () => {
               Instantly deploy your Next.js site to a public URL with Vercel.
             </p>
           </a>
+
+          <Link href="/about">
+            <a className={styles.card}>
+              <h2>About &rarr;</h2>
+              <p>
+                關於頁面
+              </p>
+            </a>
+          </Link>
         </div>
       </main>
 
