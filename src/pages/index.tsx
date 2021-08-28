@@ -69,6 +69,15 @@ const Home: NextPage = () => {
               </p>
             </a>
           </Link>
+
+          <Link href="/posts">
+            <a className={styles.card}>
+              <h2>Post List &rarr;</h2>
+              <p>
+                文章列表
+              </p>
+            </a>
+          </Link>
         </div>
       </main>
 

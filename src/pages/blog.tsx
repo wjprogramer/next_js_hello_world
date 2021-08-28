@@ -1,6 +1,7 @@
 import { GetStaticPropsResult } from 'next'
 import React from "react"
 import safeJsonStringify from 'safe-json-stringify'
+import { Post } from '../models/post'
 import { sleep } from '../utils/async'
 
 interface Props {
@@ -11,14 +12,6 @@ interface Props {
 interface StaticProps {
   title: string
   posts: []
-}
-
-class Post {
-  constructor(title: string) {
-    this.title = title
-  }
-
-  title: string
 }
 
 const Blog: React.FC<Props> = (props: Props) => {
@@ -37,10 +30,10 @@ const Blog: React.FC<Props> = (props: Props) => {
 
 export const getStaticProps = async(): Promise<GetStaticPropsResult<StaticProps>> => {
   // Call an external API (FAKE) endpoint to get posts
-  await sleep(10);
+  await sleep(10)
   const posts: Post[] = [
-    new Post('Next Generation'),
-    new Post('Next JS'),
+    new Post(1, 'Next Generation'),
+    new Post(2, 'Next JS'),
   ]
   
   const stringifiedData = safeJsonStringify(posts)
