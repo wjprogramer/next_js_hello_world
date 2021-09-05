@@ -1,4 +1,5 @@
 import { GetStaticPaths, GetStaticPathsContext, GetStaticProps, GetStaticPropsContext, GetStaticPropsResult } from 'next'
+import { useRouter } from 'next/router'
 import React from "react"
 import safeJsonStringify from 'safe-json-stringify'
 import { Post } from '../../models/post'
@@ -15,6 +16,14 @@ type PageProps = {
 
 const PostPage: React.FC<PageProps> = (props: PageProps) => {
   const { post } = props;
+  const router = useRouter()
+
+  // If the page is not yet generated, this will be displayed
+  // initially until getStaticProps() finishes running
+  if (router.isFallback) {
+    return <div>Loading...</div>
+  }
+
   return (
     <>
       <ul>
