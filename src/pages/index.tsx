@@ -78,6 +78,15 @@ const Home: NextPage = () => {
               </p>
             </a>
           </Link>
+
+          <Link href="/download">
+            <a className={styles.card}>
+              <h2>Download &rarr;</h2>
+              <p>
+                下載頁面
+              </p>
+            </a>
+          </Link>
         </div>
       </main>
 
