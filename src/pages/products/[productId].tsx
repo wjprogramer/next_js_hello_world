@@ -1,5 +1,10 @@
+import { ErrorButton } from '../../components/Buttons';
+
 const ProductDetails = () => {
-  return <>Hello</>
+  return <>
+    Hello<br />
+    <ErrorButton />
+  </>
 }
 
 export default ProductDetails;
