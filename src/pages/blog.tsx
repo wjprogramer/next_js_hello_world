@@ -1,4 +1,4 @@
-import { GetStaticPropsResult } from 'next'
+import { GetStaticProps, GetStaticPropsResult } from 'next'
 import React from "react"
 import safeJsonStringify from 'safe-json-stringify'
 import { Post } from '../models/post'
@@ -28,7 +28,7 @@ const Blog: React.FC<Props> = (props: Props) => {
   )
 }
 
-export const getStaticProps = async(): Promise<GetStaticPropsResult<StaticProps>> => {
+export const getStaticProps: GetStaticProps = async(context): Promise<GetStaticPropsResult<StaticProps>> => {
   // Call an external API (FAKE) endpoint to get posts
   await sleep(10)
   const posts: Post[] = [
@@ -39,6 +39,21 @@ export const getStaticProps = async(): Promise<GetStaticPropsResult<StaticProps>
   const stringifiedData = safeJsonStringify(posts)
   const data = JSON.parse(stringifiedData)
 
+  if (posts.length === 0) {
+    return {
+      notFound: true,
+    }
+  }
+
+  if (posts.length === 0) {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false,
+      },
+    }
+  }
+
   // By returning { props: { posts } }, the Blog component
   // will receive `posts` as a prop at build time
   return {
@@ -46,6 +61,10 @@ export const getStaticProps = async(): Promise<GetStaticPropsResult<StaticProps>
       title: '部落格 👊',
       posts: data,
     },
+    // Next.js will attempt to re-generate the page:
+    // - When a request comes in
+    // - At most once every 10 seconds
+    revalidate: 10, // In seconds
   }
 }
 

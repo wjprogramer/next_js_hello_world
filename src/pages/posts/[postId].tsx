@@ -63,7 +63,13 @@ export const getStaticPaths: GetStaticPaths = async(_: GetStaticPathsContext) =>
     params: { postId: postId.toString() },
   }))
 
-  return { paths, fallback: 'blocking' }
+  return { 
+    paths,
+    // We'll pre-render only these paths at build time.
+    // { fallback: blocking } will server-render pages
+    // on-demand if the path doesn't exist.
+    fallback: 'blocking', 
+  }
 }
 
 export default PostPage
