@@ -60,6 +60,7 @@ export const getStaticPaths: GetStaticPaths = async(_: GetStaticPathsContext) =>
   const postsIds: number[] = [1,2,3]
 
   const paths = postsIds.map((postId) => ({
+    // params 裡的 `postId` 會對應到 `[postId].tsx` 的 `[postId]`
     params: { postId: postId.toString() },
   }))
 
