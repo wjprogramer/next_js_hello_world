@@ -1,8 +1,7 @@
-import { GetServerSideProps } from 'next'
+import {  GetServerSideProps, InferGetServerSidePropsType } from 'next'
 import Link from 'next/link';
 
-const ProductList = (props: any) => {
-  const { productIds } = props;
+const ProductList = ({ productIds }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   return (
     <ul>
       {productIds.map((e: any) => <li key={e}>
