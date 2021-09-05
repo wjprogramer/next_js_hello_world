@@ -87,6 +87,15 @@ const Home: NextPage = () => {
               </p>
             </a>
           </Link>
+
+          <Link href="/products">
+            <a className={styles.card}>
+              <h2>Product List &rarr;</h2>
+              <p>
+                產品列表
+              </p>
+            </a>
+          </Link>
         </div>
       </main>
 
